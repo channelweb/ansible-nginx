@@ -1,0 +1,5 @@
+nginx_servers: {}
+localhostvar: ''
+
+# apps
+apps: {}
