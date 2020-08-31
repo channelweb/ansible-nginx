@@ -11,12 +11,15 @@
     name: nginx
     enabled: yes
 
+- set_fact:
+    nginx_main_conf: "{{ playbook_dir }}/templates/nginx/nginx.conf"
+
 - name: update nginx.conf
   become: yes
   template:
-    src: "{{ playbook_dir }}/templates/nginx/nginx.conf"
+    src: "{{ nginx_main_conf }}"
     dest: "/etc/nginx/nginx.conf"
-  when: "{{ playbook_dir }}/templates/nginx/nginx.conf" is file
+  when: nginx_main_conf is file
   notify: restart nginx
 
 - name: lookup files in templates/nginx/conf.d
